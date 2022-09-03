@@ -910,11 +910,13 @@ namespace microemulator {
 			^ register1 = "0", ^ register2 = "0", ^ register3 = "0", ^ register4 = "0",
 			^ register5 = "0", ^ register6 = "0", ^ register7 = "0", ^ register8 = "0",
 			^ register9 = "0", ^ registerA = "0", ^ registerB = "0", ^ registerC = "0",
-			^ registerD = "0", ^ registerE = "0", ^ register0 = "0", ^ num_order = "0";
+			^ registerD = "0", ^ registerE = "0", ^ register0 = "0", ^ num_order = "0",
+			^ login = "", ^ password = "";
 		bool program_mode = false;
 		bool writeX = false, readX = false;
 		bool F_mode = false;
 		bool K_mode = false;
+		bool sing_in = false;
 	private: void update() {
 		if (program_mode) {
 
@@ -1393,13 +1395,13 @@ namespace microemulator {
 		K_mode = true;
 		F_mode = false;
 	}
-private: System::Void âîéòèÂÏğîôèëüToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
-	SingIn window;
-	window.ShowDialog();
-}
-private: System::Void çàğåãèñòğèğîâàòüñÿToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	Registration window;
-	window.ShowDialog();
-}
-};
+	private: System::Void âîéòèÂÏğîôèëüToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
+		SingIn window;
+		window.ShowDialog();
+	}
+	private: System::Void çàğåãèñòğèğîâàòüñÿToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		Registration window;
+		window.ShowDialog();
+	}
+	};
 }
