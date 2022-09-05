@@ -1,5 +1,6 @@
 #pragma once
 #include "Registration.h"
+#include "tinyxml2.h"
 
 namespace microemulator {
 
@@ -45,7 +46,7 @@ namespace microemulator {
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -112,13 +113,46 @@ namespace microemulator {
 
 		}
 #pragma endregion
-
+	public: String^ name = "", ^ password = "";
+	public: bool search = false;
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		name = this->textBox1->Text;
+		password = this->textBox2->Text;
+		tinyxml2::XMLDocument DB;
+		if (DB.LoadFile("data_base.xml") == tinyxml2::XML_SUCCESS) {
+			tinyxml2::XMLElement* user = DB.FirstChildElement("users");
+			if (user != NULL) {
+				user = user->FirstChildElement("user");
+				if (user != NULL) {
+					while (user != NULL) {
+						std::string name_user = user->Attribute("name");
+						System::String^ s = gcnew System::String(name_user.c_str());
+						if (s == name) {
+							search = true;
+							std::string password_user = user->Attribute("password");
+							System::String^ p = gcnew System::String(password_user.c_str());
+							if (password == p) {
+								MessageBox::Show("успешно вошли в профиль");
+								this->Close();
+								break;
+							}
+							else {
+								MessageBox::Show("пароль не верный");
+							}
+						}
+						user = user->NextSiblingElement("user");
+					}
+				}
+			}
+			if (!search) {
+				MessageBox::Show("такой профиль не найден");
+			}
+		}
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		Registration window;
 		window.ShowDialog();
 		this->Close();
 	}
-};
+	};
 }

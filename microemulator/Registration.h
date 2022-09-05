@@ -1,4 +1,8 @@
 #pragma once
+#include "tinyxml2.h"
+#include <iostream>
+#include <string>
+#include <string.h>
 
 namespace microemulator {
 
@@ -43,7 +47,7 @@ namespace microemulator {
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -65,6 +69,7 @@ namespace microemulator {
 			this->button1->TabIndex = 5;
 			this->button1->Text = L"зарегистрироваться";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Registration::button1_Click);
 			// 
 			// textBox2
 			// 
@@ -97,5 +102,31 @@ namespace microemulator {
 
 		}
 #pragma endregion
+	public: String^ name = "", ^ password = "";
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		name = this->textBox1->Text;
+		password = this->textBox2->Text;
+		tinyxml2::XMLDocument DB;
+		if (DB.LoadFile("data_base.xml") == tinyxml2::XML_SUCCESS) {
+			tinyxml2::XMLElement* user = DB.FirstChildElement("users");
+			bool search = false;
+			if (user != NULL) {
+				user = user->FirstChildElement("user");
+				if (user != NULL) {
+					while (user != NULL) {
+						std::string name_user = user->Attribute("name");
+						System::String^ s = gcnew System::String(name_user.c_str());
+						if (s == name) {
+							search = true;
+							MessageBox::Show("пользоваетель с таким именем уже существует");
+							break;
+						}
+						user = user->NextSiblingElement("user");
+					}
+				}
+			}
+
+		}
+	}
 	};
 }

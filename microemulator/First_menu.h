@@ -39,7 +39,6 @@ namespace microemulator {
 			}
 		}
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
-	protected:
 	private: System::Windows::Forms::ToolStripMenuItem^ ìåíşToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ ñîõğàíèòüÊîäToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ âîéòèÂÏğîôèëüToolStripMenuItem;
@@ -48,7 +47,6 @@ namespace microemulator {
 	private: System::Windows::Forms::ToolStripMenuItem^ âîéòèÂÏğîôèëüToolStripMenuItem1;
 	private: System::Windows::Forms::ToolStripMenuItem^ çàğåãèñòğèğîâàòüñÿToolStripMenuItem;
 	private: System::Windows::Forms::Label^ screen;
-
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button3;
@@ -1398,6 +1396,8 @@ namespace microemulator {
 	private: System::Void âîéòèÂÏğîôèëüToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
 		SingIn window;
 		window.ShowDialog();
+		login = window.name;
+		password = window.password;
 	}
 	private: System::Void çàğåãèñòğèğîâàòüñÿToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		Registration window;
