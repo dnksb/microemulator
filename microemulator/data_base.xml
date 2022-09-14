@@ -3,4 +3,13 @@
 	<user name="иван иванович" password="1111">
 		<project name="first" path="C:\Users\dan58\Documents"/>
 	</user>
+	<user name="Биба" password="1234">
+		<project name="project0" path="C:\"/>
+	</user>
+	<user name="admin" password="admin">
+		<project name="laba" path="C:\Users\dan58\Documents"/>
+	</user>
+	<user name="Илья Отческий" password="лох">
+		<project name="abebe" path="C:\Users\dan58"/>
+	</user>
 </users>

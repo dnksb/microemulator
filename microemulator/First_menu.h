@@ -1375,7 +1375,7 @@ namespace microemulator {
 		}
 		else {
 			if (F_mode) {
-
+				program_mode = true;
 			}
 			else if (K_mode) {
 
