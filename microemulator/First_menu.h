@@ -1,4 +1,6 @@
 #pragma once
+#include "OpenCode.h"
+#include "SaveCode.h"
 #include <Windows.h>
 #include "tinyxml2.h"
 #include "SingIn.h"
@@ -41,7 +43,7 @@ namespace microemulator {
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ ìåíşToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ ñîõğàíèòüÊîäToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ âîéòèÂÏğîôèëüToolStripMenuItem;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ ñîçäàòüÎò÷åòToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ ïğîôèëüToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ âîéòèÂÏğîôèëüToolStripMenuItem1;
@@ -100,6 +102,7 @@ namespace microemulator {
 	private: System::Windows::Forms::Label^ R1;
 	private: System::Windows::Forms::Label^ RF;
 	private: System::Windows::Forms::Label^ order;
+	private: System::Windows::Forms::ToolStripMenuItem^ îòêğûòüÊîäToolStripMenuItem;
 
 	private:
 		/// <summary>
@@ -118,7 +121,6 @@ namespace microemulator {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->ìåíşToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ñîõğàíèòüÊîäToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->âîéòèÂÏğîôèëüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ñîçäàòüÎò÷åòToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ïğîôèëüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->âîéòèÂÏğîôèëüToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -177,6 +179,7 @@ namespace microemulator {
 			this->R1 = (gcnew System::Windows::Forms::Label());
 			this->RF = (gcnew System::Windows::Forms::Label());
 			this->order = (gcnew System::Windows::Forms::Label());
+			this->îòêğûòüÊîäToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -197,7 +200,7 @@ namespace microemulator {
 			// 
 			this->ìåíşToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
 				this->ñîõğàíèòüÊîäToolStripMenuItem,
-					this->âîéòèÂÏğîôèëüToolStripMenuItem, this->ñîçäàòüÎò÷åòToolStripMenuItem
+					this->ñîçäàòüÎò÷åòToolStripMenuItem, this->îòêğûòüÊîäToolStripMenuItem
 			});
 			this->ìåíşToolStripMenuItem->Name = L"ìåíşToolStripMenuItem";
 			this->ìåíşToolStripMenuItem->Size = System::Drawing::Size(51, 20);
@@ -207,19 +210,14 @@ namespace microemulator {
 			// 
 			this->ñîõğàíèòüÊîäToolStripMenuItem->BackColor = System::Drawing::Color::White;
 			this->ñîõğàíèòüÊîäToolStripMenuItem->Name = L"ñîõğàíèòüÊîäToolStripMenuItem";
-			this->ñîõğàíèòüÊîäToolStripMenuItem->Size = System::Drawing::Size(153, 22);
+			this->ñîõğàíèòüÊîäToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->ñîõğàíèòüÊîäToolStripMenuItem->Text = L"ñîõğàíèòü êîä";
-			// 
-			// âîéòèÂÏğîôèëüToolStripMenuItem
-			// 
-			this->âîéòèÂÏğîôèëüToolStripMenuItem->Name = L"âîéòèÂÏğîôèëüToolStripMenuItem";
-			this->âîéòèÂÏğîôèëüToolStripMenuItem->Size = System::Drawing::Size(153, 22);
-			this->âîéòèÂÏğîôèëüToolStripMenuItem->Text = L"îòêğûòü êîä";
+			this->ñîõğàíèòüÊîäToolStripMenuItem->Click += gcnew System::EventHandler(this, &First_menu::ñîõğàíèòüÊîäToolStripMenuItem_Click);
 			// 
 			// ñîçäàòüÎò÷åòToolStripMenuItem
 			// 
 			this->ñîçäàòüÎò÷åòToolStripMenuItem->Name = L"ñîçäàòüÎò÷åòToolStripMenuItem";
-			this->ñîçäàòüÎò÷åòToolStripMenuItem->Size = System::Drawing::Size(153, 22);
+			this->ñîçäàòüÎò÷åòToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->ñîçäàòüÎò÷åòToolStripMenuItem->Text = L"ñîçäàòü îò÷åò";
 			// 
 			// ïğîôèëüToolStripMenuItem
@@ -399,6 +397,7 @@ namespace microemulator {
 			this->button12->TabIndex = 8;
 			this->button12->Text = L"->";
 			this->button12->UseVisualStyleBackColor = false;
+			this->button12->Click += gcnew System::EventHandler(this, &First_menu::button12_Click);
 			// 
 			// button13
 			// 
@@ -472,6 +471,7 @@ namespace microemulator {
 			this->button18->TabIndex = 14;
 			this->button18->Text = L"<-";
 			this->button18->UseVisualStyleBackColor = false;
+			this->button18->Click += gcnew System::EventHandler(this, &First_menu::button18_Click);
 			// 
 			// button19
 			// 
@@ -532,6 +532,7 @@ namespace microemulator {
 			this->button23->TabIndex = 21;
 			this->button23->Text = L"ÁÏ";
 			this->button23->UseVisualStyleBackColor = false;
+			this->button23->Click += gcnew System::EventHandler(this, &First_menu::button23_Click);
 			// 
 			// button24
 			// 
@@ -544,6 +545,7 @@ namespace microemulator {
 			this->button24->TabIndex = 20;
 			this->button24->Text = L"B/0";
 			this->button24->UseVisualStyleBackColor = false;
+			this->button24->Click += gcnew System::EventHandler(this, &First_menu::button24_Click);
 			// 
 			// button25
 			// 
@@ -604,6 +606,7 @@ namespace microemulator {
 			this->button29->TabIndex = 27;
 			this->button29->Text = L"ÏÏ";
 			this->button29->UseVisualStyleBackColor = false;
+			this->button29->Click += gcnew System::EventHandler(this, &First_menu::button29_Click);
 			// 
 			// button30
 			// 
@@ -616,6 +619,7 @@ namespace microemulator {
 			this->button30->TabIndex = 26;
 			this->button30->Text = L"ñ/Ï";
 			this->button30->UseVisualStyleBackColor = false;
+			this->button30->Click += gcnew System::EventHandler(this, &First_menu::button30_Click);
 			// 
 			// radioButton1
 			// 
@@ -833,6 +837,13 @@ namespace microemulator {
 			this->order->Size = System::Drawing::Size(0, 13);
 			this->order->TabIndex = 54;
 			// 
+			// îòêğûòüÊîäToolStripMenuItem
+			// 
+			this->îòêğûòüÊîäToolStripMenuItem->Name = L"îòêğûòüÊîäToolStripMenuItem";
+			this->îòêğûòüÊîäToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->îòêğûòüÊîäToolStripMenuItem->Text = L"îòêğûòü êîä";
+			this->îòêğûòüÊîäToolStripMenuItem->Click += gcnew System::EventHandler(this, &First_menu::îòêğûòüÊîäToolStripMenuItem_Click);
+			// 
 			// First_menu
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -915,35 +926,43 @@ namespace microemulator {
 		bool F_mode = false;
 		bool K_mode = false;
 		bool sing_in = false;
+		array<int>^ com_stac = gcnew array<int>(105);
+		int com_count = 0x00;
+	public: void set_command() {
+		for (int i = 0; i < 105; i++) {
+			com_stac[i] = 0x00;
+		}
+	}
 	private: void update() {
 		if (program_mode) {
+			this->order->Text = Convert::ToString(com_count);
 
 		}
 		else {
 			this->screen->Text = registerX;
-			this->RX->Text = registerX;
-			this->RY->Text = registerY;
-			this->RZ->Text = registerZ;
-			this->RT->Text = registerT;
-			this->R1->Text = register1;
-			this->R2->Text = register2;
-			this->R3->Text = register3;
-			this->R4->Text = register4;
-			this->R5->Text = register5;
-			this->R6->Text = register6;
-			this->R7->Text = register7;
-			this->R8->Text = register8;
-			this->R9->Text = register9;
-			this->RA->Text = registerA;
-			this->RB->Text = registerB;
-			this->RC->Text = registerC;
-			this->RD->Text = registerD;
-			this->RE->Text = registerE;
-			this->RF->Text = register0;
-			writeX = false, readX = false;
-			F_mode = false;
-			K_mode = false;
 		}
+		this->RX->Text = registerX;
+		this->RY->Text = registerY;
+		this->RZ->Text = registerZ;
+		this->RT->Text = registerT;
+		this->R1->Text = register1;
+		this->R2->Text = register2;
+		this->R3->Text = register3;
+		this->R4->Text = register4;
+		this->R5->Text = register5;
+		this->R6->Text = register6;
+		this->R7->Text = register7;
+		this->R8->Text = register8;
+		this->R9->Text = register9;
+		this->RA->Text = registerA;
+		this->RB->Text = registerB;
+		this->RC->Text = registerC;
+		this->RD->Text = registerD;
+		this->RE->Text = registerE;
+		this->RF->Text = register0;
+		writeX = false, readX = false;
+		F_mode = false;
+		K_mode = false;
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		F_mode = true;
@@ -951,7 +970,22 @@ namespace microemulator {
 	}
 	private: System::Void button20_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x14;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -970,7 +1004,22 @@ namespace microemulator {
 	}
 	private: System::Void button16_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x09;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -988,12 +1037,27 @@ namespace microemulator {
 			else {
 				registerX += "9";
 			}
-			update();
 		}
+		update();
 	}
 	private: System::Void button10_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x08;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1016,7 +1080,22 @@ namespace microemulator {
 	}
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x07;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1039,7 +1118,22 @@ namespace microemulator {
 	}
 	private: System::Void button15_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x06;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1062,7 +1156,22 @@ namespace microemulator {
 	}
 	private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x05;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1085,7 +1194,22 @@ namespace microemulator {
 	}
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x04;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1108,7 +1232,22 @@ namespace microemulator {
 	}
 	private: System::Void button14_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x03;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1131,7 +1270,22 @@ namespace microemulator {
 	}
 	private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x02;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1154,7 +1308,22 @@ namespace microemulator {
 	}
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x01;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1177,7 +1346,22 @@ namespace microemulator {
 	}
 	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x00;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1200,7 +1384,22 @@ namespace microemulator {
 	}
 	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x0A;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1223,7 +1422,22 @@ namespace microemulator {
 	}
 	private: System::Void button21_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x10;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1240,7 +1454,22 @@ namespace microemulator {
 	}
 	private: System::Void button22_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x11;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1254,7 +1483,22 @@ namespace microemulator {
 	}
 	private: System::Void button28_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x13;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1268,7 +1512,22 @@ namespace microemulator {
 	}
 	private: System::Void button27_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x12;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1282,7 +1541,22 @@ namespace microemulator {
 	}
 	private: System::Void button25_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x0D;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1305,7 +1579,22 @@ namespace microemulator {
 	}
 	private: System::Void button26_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x0E;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1330,7 +1619,21 @@ namespace microemulator {
 	}
 	private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (F_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x09;
+			}
 		}
 		else {
 			writeX = !writeX;
@@ -1339,7 +1642,21 @@ namespace microemulator {
 	}
 	private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (F_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x09;
+			}
 		}
 		else {
 			readX = !readX;
@@ -1348,7 +1665,22 @@ namespace microemulator {
 	}
 	private: System::Void button13_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x0B;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1371,7 +1703,22 @@ namespace microemulator {
 	}
 	private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
+			if (F_mode) {
 
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x0C;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
 		}
 		else {
 			if (F_mode) {
@@ -1402,6 +1749,231 @@ namespace microemulator {
 	private: System::Void çàğåãèñòğèğîâàòüñÿToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		Registration window;
 		window.ShowDialog();
+		login = window.name;
+		password = window.password;
 	}
-	};
+	private: System::Void button30_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (program_mode) {
+			if (F_mode) {
+
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x0C;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
+		}
+		else {
+			if (F_mode) {
+				program_mode = true;
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+				registerC = registerX;
+			}
+			else if (readX) {
+				registerX = registerC;
+			}
+			update();
+		}
+	}
+	private: System::Void button24_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (program_mode) {
+			if (F_mode) {
+
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x0C;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
+		}
+		else {
+			if (F_mode) {
+				program_mode = true;
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+				registerC = registerX;
+			}
+			else if (readX) {
+				registerX = registerC;
+			}
+			update();
+		}
+	}
+	private: System::Void button29_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (program_mode) {
+			if (F_mode) {
+
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x0C;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
+		}
+		else {
+			if (F_mode) {
+				program_mode = true;
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+				registerC = registerX;
+			}
+			else if (readX) {
+				registerX = registerC;
+			}
+			update();
+		}
+	}
+	private: System::Void button23_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (program_mode) {
+			if (F_mode) {
+
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x0C;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
+		}
+		else {
+			if (F_mode) {
+				program_mode = true;
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+				registerC = registerX;
+			}
+			else if (readX) {
+				registerX = registerC;
+			}
+			update();
+		}
+	}
+	private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (program_mode) {
+			if (F_mode) {
+
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x0C;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
+		}
+		else {
+			if (F_mode) {
+				program_mode = true;
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+				registerC = registerX;
+			}
+			else if (readX) {
+				registerX = registerC;
+			}
+			update();
+		}
+	}
+	private: System::Void button12_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (program_mode) {
+			if (F_mode) {
+
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+
+			}
+			else if (readX) {
+
+			}
+			else {
+				com_stac[com_count] = 0x0C;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
+			}
+		}
+		else {
+			if (F_mode) {
+				program_mode = true;
+			}
+			else if (K_mode) {
+
+			}
+			else if (writeX) {
+				registerC = registerX;
+			}
+			else if (readX) {
+				registerX = registerC;
+			}
+			update();
+		}
+	}
+	private: System::Void ñîõğàíèòüÊîäToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		SaveCode window;
+		window.name = login;
+		for (int i = 0; i < 105; i++) {
+			window.code[i] = com_stac[i];
+		}
+		window.ShowDialog();
+	}
+	private: System::Void îòêğûòüÊîäToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		OpenCode window;
+		window.name = login;
+		window.ShowDialog();
+	}
+};
 }

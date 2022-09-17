@@ -1,8 +1,9 @@
 #pragma once
-#include "tinyxml2.h"
 #include <iostream>
 #include <string>
 #include <string.h>
+#include "tinyxml2.h"
+#include <fstream>
 
 namespace microemulator {
 
@@ -14,12 +15,12 @@ namespace microemulator {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Сводка для Registration
+	/// Сводка для OpenCode
 	/// </summary>
-	public ref class Registration : public System::Windows::Forms::Form
+	public ref class OpenCode : public System::Windows::Forms::Form
 	{
 	public:
-		Registration(void)
+		OpenCode(void)
 		{
 			InitializeComponent();
 			//
@@ -31,7 +32,7 @@ namespace microemulator {
 		/// <summary>
 		/// Освободить все используемые ресурсы.
 		/// </summary>
-		~Registration()
+		~OpenCode()
 		{
 			if (components)
 			{
@@ -40,7 +41,6 @@ namespace microemulator {
 		}
 	private: System::Windows::Forms::Button^ button1;
 	protected:
-	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::TextBox^ textBox1;
 
 	private:
@@ -57,52 +57,43 @@ namespace microemulator {
 		void InitializeComponent(void)
 		{
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(83, 145);
+			this->button1->Location = System::Drawing::Point(81, 145);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(123, 23);
-			this->button1->TabIndex = 5;
-			this->button1->Text = L"зарегистрироваться";
+			this->button1->TabIndex = 10;
+			this->button1->Text = L"открыть";
 			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &Registration::button1_Click);
-			// 
-			// textBox2
-			// 
-			this->textBox2->Location = System::Drawing::Point(92, 119);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(100, 20);
-			this->textBox2->TabIndex = 4;
-			this->textBox2->Text = L"пароль";
+			this->button1->Click += gcnew System::EventHandler(this, &OpenCode::button1_Click);
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(92, 92);
+			this->textBox1->Location = System::Drawing::Point(90, 92);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(100, 20);
-			this->textBox1->TabIndex = 3;
-			this->textBox1->Text = L"логин";
+			this->textBox1->TabIndex = 9;
+			this->textBox1->Text = L"название";
 			// 
-			// Registration
+			// OpenCode
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(284, 261);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->textBox1);
-			this->Name = L"Registration";
-			this->Text = L"Registration";
+			this->Name = L"OpenCode";
+			this->Text = L"OpenCode";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	public: String^ name = "", ^ password = "";
+	public: String^ name_p = "", ^ name = "", ^ cod;
+	public: int* code = new int[105];
 	private: void MarshalString(String^ s, std::string& os) {
 		using namespace Runtime::InteropServices;
 		const char* chars = (const char*)(Marshal::StringToHGlobalAnsi(s)).ToPointer();
@@ -110,8 +101,7 @@ namespace microemulator {
 		Marshal::FreeHGlobal(IntPtr((void*)chars));
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		name = this->textBox1->Text;
-		password = this->textBox2->Text;
+		name_p = this->textBox1->Text;
 		tinyxml2::XMLDocument DB;
 		if (DB.LoadFile("data_base.xml") == tinyxml2::XML_SUCCESS) {
 			tinyxml2::XMLElement* user = DB.FirstChildElement("users");
@@ -121,26 +111,30 @@ namespace microemulator {
 				if (user != NULL) {
 					while (user != NULL) {
 						std::string name_user = user->Attribute("name");
-						System::String^ s = gcnew System::String(name_user.c_str());
+						String^ s = gcnew System::String(name_user.c_str());
 						if (s == name) {
-							search = true;
-							MessageBox::Show("пользоваетель с таким именем уже существует");
-							return;
+							user = user->FirstChildElement("project");
+							while (user != NULL) {
+								std::string name_project = user->Attribute("name");
+								String^ p = gcnew System::String(name_project.c_str());
+								if (p == name_p) {
+									std::string com = user->Attribute("code");
+									String^ c = gcnew System::String(com.c_str());
+									cod = c;
+									for (int i = 0; i < 105; i+=3) {
+										code[i] = Convert::ToInt32(cod[i] + cod[i + 1]);
+									}
+									MessageBox::Show("успешно открыт");
+								}
+								user = user->NextSiblingElement("project");
+							}
 						}
 						user = user->NextSiblingElement("user");
 					}
 				}
+				MessageBox::Show("не получилось");
 			}
-			user = DB.FirstChildElement("users");
-			user = user->InsertNewChildElement("user");
-			std::string str_name, str_pass;
-			MarshalString(name, str_name);
-			user->SetAttribute("name", str_name.c_str());
-			MarshalString(password, str_pass);
-			user->SetAttribute("password", str_pass.c_str());
 		}
-		DB.SaveFile("data_base.xml");
-		MessageBox::Show("сохранено успешно");
 	}
 	};
 }

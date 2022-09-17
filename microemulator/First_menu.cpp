@@ -10,6 +10,6 @@ int main() {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 	microemulator::First_menu form;
-	//form.ReadSaveData();
+	form.set_command();
 	Application::Run(% form);
 }
