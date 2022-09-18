@@ -1271,7 +1271,8 @@ namespace microemulator {
 	private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
 			if (F_mode) {
-
+				com_stac[com_count] = 0x17;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (K_mode) {
 
@@ -1309,7 +1310,8 @@ namespace microemulator {
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
 			if (F_mode) {
-
+				com_stac[com_count] = 0x16;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (K_mode) {
 
@@ -1347,7 +1349,8 @@ namespace microemulator {
 	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
 			if (F_mode) {
-
+				com_stac[com_count] = 0x15;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (K_mode) {
 
@@ -1513,7 +1516,8 @@ namespace microemulator {
 	private: System::Void button27_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
 			if (F_mode) {
-
+				com_stac[com_count] = 0x22;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (K_mode) {
 
@@ -1669,13 +1673,16 @@ namespace microemulator {
 
 			}
 			else if (K_mode) {
-
+				com_stac[com_count] = 0x38;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (writeX) {
-
+				com_stac[com_count] = 0x4B;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (readX) {
-
+				com_stac[com_count] = 0x6B;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else {
 				com_stac[com_count] = 0x0B;
@@ -1704,16 +1711,19 @@ namespace microemulator {
 	private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
 			if (F_mode) {
-
+				program_mode = false;
 			}
 			else if (K_mode) {
-
+				com_stac[com_count] = 0x39;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (writeX) {
-
+				com_stac[com_count] = 0x4C;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (readX) {
-
+				com_stac[com_count] = 0x6C;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else {
 				com_stac[com_count] = 0x0C;
@@ -1863,13 +1873,16 @@ namespace microemulator {
 
 			}
 			else if (K_mode) {
-
+				com_stac[com_count] = 0x39;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (writeX) {
-
+				com_stac[com_count] = 0x4C;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (readX) {
-
+				com_stac[com_count] = 0x06;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else {
 				com_stac[com_count] = 0x0C;
@@ -1898,13 +1911,16 @@ namespace microemulator {
 
 			}
 			else if (K_mode) {
-
+				com_stac[com_count] = 0x39;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (writeX) {
-
+				com_stac[com_count] = 0x4C;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (readX) {
-
+				com_stac[com_count] = 0x06;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else {
 				com_stac[com_count] = 0x0C;
@@ -1930,16 +1946,19 @@ namespace microemulator {
 	private: System::Void button12_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (program_mode) {
 			if (F_mode) {
-
+				program_mode = false;
 			}
 			else if (K_mode) {
-
+				com_stac[com_count] = 0x39;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (writeX) {
-
+				com_stac[com_count] = 0x4C;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else if (readX) {
-
+				com_stac[com_count] = 0x06;
+				(com_count >= 105) ? com_count = 0x00 : com_count++;
 			}
 			else {
 				com_stac[com_count] = 0x0C;
