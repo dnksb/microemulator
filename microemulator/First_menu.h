@@ -921,7 +921,9 @@ namespace microemulator {
 			^ register9 = "0", ^ registerA = "0", ^ registerB = "0", ^ registerC = "0",
 			^ registerD = "0", ^ registerE = "0", ^ register0 = "0", ^ num_order = "0",
 			^ login = "", ^ password = "";
-
+		enum Modes {
+			F_mode = 0, K_mode
+		};
 		bool program_mode = false;
 		bool writeX = false, readX = false;
 		bool F_mode = false;
@@ -967,8 +969,8 @@ namespace microemulator {
 		this->RF->Text = register0;
 
 		writeX = false, readX = false;
-		F_mode = false;
-		K_mode = false;
+		/*F_mode = false;
+		K_mode = false;*/
 	}
 		   /*turn on F mode*/
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
